@@ -27,28 +27,24 @@ const mysql = require('mysql');
 //     multipleStatements: true
 // });
 
+// Migrate to AWS RDS MySQL //
+
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
-  user: process.env.DB_USER, 
-  password: process.env.DB_PASS, 
-  database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE,
   multipleStatements: true
 });
 
-pool.getConnection(function(error){
-  if (error) throw err;
-  console.log("Database connected!");
-  });  
+pool.getConnection(function(err) {
+  if (err) {
+    console.error('Database connection failed: ' + err.stack);
+    return;
+  }
 
- module.exports = pool; 
+  console.log('Connected to database.');
+});
 
-//     connection.connect(function(err){
-//         if(err){
-//             console.error('Error connectiong: ' + err.stack);
-//             return;
-//         }
-//         console.log('Connected as thread id: ' + connection.threadId);
-//     });
-
-//     module.exports = connection;
+module.exports = pool;
