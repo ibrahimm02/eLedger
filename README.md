@@ -35,11 +35,16 @@ docker build -t eledger .
 docker run -p 8080:8080 eledger
 ```
 
-The application should now be running and can be accessed at http://localhost:8080.
+The application should now be running and can be accessed at http://localhost:8080
 
 Check running containers using 
 ```sh 
 docker ps
+```
+
+### Docker Repository
+``` sh
+docker pull ibrahimm02/eledger:0.0.1
 ```
 
 ## Contributing
